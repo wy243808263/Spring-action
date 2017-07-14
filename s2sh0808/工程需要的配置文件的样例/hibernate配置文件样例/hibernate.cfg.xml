@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
+	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+	<property name="hibernate.connection.username">root</property>
+	<property name="hibernate.connection.password">root</property>
+	<property name="jdbc.fetch_size">50</property>
+	<!-- 配置C3p0连接池 -->
+	<!-- 启用c3p0连接池  设置连接池提供的供应商 --> 
+	<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+	<!-- 最大连接数 -->
+	<property name="c3p0.max_size">20</property>
+	<!-- 最小连接数 -->
+	<property name="c3p0.min_size">5</property>
+	<!-- 每次请求连接的数目 -->
+	<property name="c3p0.acquire_increment">5</property>
+	<!-- 设置过期时间,以秒为单位,如果连接池中 -处于空闲状态的连接超过了这个时间,该连接就会从连接池中删除-->
+	<property name="c3p0.timeout">120</property>
+	<!-- 每个3000秒检查连接池中的空闲连接  -->
+	<property name="c3p0.idle_test_period">3000</property>
+	
+	<!-- 设置隔离级别  1 2 4  8-->
+	<property name="connection.isolation">2</property>
+	
+	<!-- 配置session的线程本地化 threadLocal -->
+	<property name="current_session_context_class">thread</property>
+	
+	<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+	<property name="hibernate.hbm2ddl.auto">update</property>
+	<property name="hibernate.show_sql">true</property>
+	<mapping resource="cn/itcast/oa/entity/User.hbm.xml"/>
+</session-factory>
+</hibernate-configuration>

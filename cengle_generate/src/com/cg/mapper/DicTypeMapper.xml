@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cg.dao.DicTypeDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.cg.entity.DicType" >
+	<result column="id" property="id"/>
+	<result column="dicTypeKey" property="dicTypeKey"/>
+	<result column="dicTypeName" property="dicTypeName"/>
+	<result column="description" property="description"/>
+</resultMap>
+       
+<!-- dic_type table all fields -->
+<sql id="Base_Column_List" >
+	 id,dicTypeKey,dicTypeName,description
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="condition.id != null and condition.id != ''" >
+	    and id =  #{condition.id}
+	</if>
+	<if test="condition.dicTypeKey != null and condition.dicTypeKey != ''" >
+	    and dicTypeKey =  #{condition.dicTypeKey}
+	</if>
+	<if test="condition.dicTypeName != null and condition.dicTypeName != ''" >
+	    and dicTypeName =  #{condition.dicTypeName}
+	</if>
+	<if test="condition.description != null and condition.description != ''" >
+	    and description =  #{condition.description}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into dic_type(id,dicTypeKey,dicTypeName,description)
+ values(#{id},#{dicTypeKey},#{dicTypeName},#{description})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update dic_type set dicTypeKey=#{dicTypeKey},dicTypeName=#{dicTypeName},description=#{description} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update dic_type set 
+	<trim  suffixOverrides="," >
+	<if test="dicTypeKey != null  ">
+		dicTypeKey=#{dicTypeKey},
+	</if>
+	<if test="dicTypeName != null  ">
+		dicTypeName=#{dicTypeName},
+	</if>
+	<if test="description != null  ">
+		description=#{description},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from dic_type where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 信息类型  -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from dic_type where id = #{id}
+</select>
+
+<!-- 信息类型  列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from dic_type 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询信息类型 列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from dic_type 
+	<include refid="Example_Where_Clause"/>
+	<if test="orderByClause != null and orderByClause != ''" >
+       order by  ${orderByClause}
+    </if>
+    <if test="limitClause != null and limitClause != ''" >
+       ${limitClause}
+    </if>
+</select>
+  	
+</mapper>   

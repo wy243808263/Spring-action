@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cg.dao.AccountDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.cg.entity.Account" >
+	<result column="id" property="id"/>
+	<result column="accountName" property="accountName"/>
+	<result column="password" property="password"/>
+	<result column="accountType" property="accountType"/>
+	<result column="description" property="description"/>
+	<result column="status" property="status"/>
+	<result column="createTime" property="createTime"/>
+	<result column="deleteStatus" property="deleteStatus"/>
+</resultMap>
+       
+<!-- account table all fields -->
+<sql id="Base_Column_List" >
+	 id,accountName,password,accountType,description,status,createTime,deleteStatus
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="condition.id != null and condition.id != ''" >
+	    and id =  #{condition.id}
+	</if>
+	<if test="condition.accountName != null and condition.accountName != ''" >
+	    and accountName =  #{condition.accountName}
+	</if>
+	<if test="condition.password != null and condition.password != ''" >
+	    and password =  #{condition.password}
+	</if>
+	<if test="condition.accountType != null and condition.accountType != ''" >
+	    and accountType =  #{condition.accountType}
+	</if>
+	<if test="condition.description != null and condition.description != ''" >
+	    and description =  #{condition.description}
+	</if>
+	<if test="condition.status != null and condition.status != ''" >
+	    and status =  #{condition.status}
+	</if>
+	<if test="condition.createTime != null and condition.createTime != ''" >
+	    and createTime =  #{condition.createTime}
+	</if>
+	<if test="condition.deleteStatus != null and condition.deleteStatus != ''" >
+	    and deleteStatus =  #{condition.deleteStatus}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into account(id,accountName,password,accountType,description,status,createTime,deleteStatus)
+ values(#{id},#{accountName},#{password},#{accountType},#{description},#{status},now(),#{deleteStatus})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update account set accountName=#{accountName},password=#{password},accountType=#{accountType},description=#{description},status=#{status},deleteStatus=#{deleteStatus} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update account set 
+	<trim  suffixOverrides="," >
+	<if test="accountName != null  ">
+		accountName=#{accountName},
+	</if>
+	<if test="password != null  ">
+		password=#{password},
+	</if>
+	<if test="accountType != null  ">
+		accountType=#{accountType},
+	</if>
+	<if test="description != null  ">
+		description=#{description},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="deleteStatus != null  ">
+		deleteStatus=#{deleteStatus},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from account where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 发布空间等级 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from account where id = #{id}
+</select>
+
+<!-- 发布空间等级 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from account 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询发布空间等级列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from account 
+	<include refid="Example_Where_Clause"/>
+	<if test="orderByClause != null and orderByClause != ''" >
+       order by  ${orderByClause}
+    </if>
+    <if test="limitClause != null and limitClause != ''" >
+       ${limitClause}
+    </if>
+</select>
+  	
+</mapper>   

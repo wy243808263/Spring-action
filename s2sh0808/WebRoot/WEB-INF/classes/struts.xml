@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+   <!-- 配置文件改了以后不用重新启动 -->
+   <constant name="struts.devMode" value="true"/>
+   <package name="java0909" extends="struts-default">
+   		<result-types>
+   			<result-type name="java0909" class="cn.itcast.s2sh0808.result.Java0909Result"></result-type>
+   		</result-types>
+   </package>
+   <include file="struts2/struts-person.xml"></include>
+</struts>	

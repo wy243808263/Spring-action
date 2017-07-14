@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cg.dao.InfoClassDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.cg.entity.InfoClass" >
+	<result column="id" property="id"/>
+	<result column="createTime" property="createTime"/>
+	<result column="deleteStatus" property="deleteStatus"/>
+	<result column="display" property="display"/>
+	<result column="name" property="name"/>
+	<result column="sequence" property="sequence"/>
+	<result column="level" property="level"/>
+	<result column="seoDescription" property="seoDescription"/>
+	<result column="seoKeywords" property="seoKeywords"/>
+	<result column="infoTypeId" property="infoTypeId"/>
+	<result column="parentId" property="parentId"/>
+	<result column="hot" property="hot"/>
+	<result column="mark" property="mark"/>
+</resultMap>
+       
+<!-- info_class table all fields -->
+<sql id="Base_Column_List" >
+	 id,createTime,deleteStatus,display,name,sequence,level,seoDescription,seoKeywords,infoTypeId,parentId,hot,mark
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="condition.id != null and condition.id != ''" >
+	    and id =  #{condition.id}
+	</if>
+	<if test="condition.createTime != null and condition.createTime != ''" >
+	    and createTime =  #{condition.createTime}
+	</if>
+	<if test="condition.deleteStatus != null and condition.deleteStatus != ''" >
+	    and deleteStatus =  #{condition.deleteStatus}
+	</if>
+	<if test="condition.display != null and condition.display != ''" >
+	    and display =  #{condition.display}
+	</if>
+	<if test="condition.name != null and condition.name != ''" >
+	    and name =  #{condition.name}
+	</if>
+	<if test="condition.sequence != null and condition.sequence != ''" >
+	    and sequence =  #{condition.sequence}
+	</if>
+	<if test="condition.level != null and condition.level != ''" >
+	    and level =  #{condition.level}
+	</if>
+	<if test="condition.seoDescription != null and condition.seoDescription != ''" >
+	    and seoDescription =  #{condition.seoDescription}
+	</if>
+	<if test="condition.seoKeywords != null and condition.seoKeywords != ''" >
+	    and seoKeywords =  #{condition.seoKeywords}
+	</if>
+	<if test="condition.infoTypeId != null and condition.infoTypeId != ''" >
+	    and infoTypeId =  #{condition.infoTypeId}
+	</if>
+	<if test="condition.parentId != null and condition.parentId != ''" >
+	    and parentId =  #{condition.parentId}
+	</if>
+	<if test="condition.hot != null and condition.hot != ''" >
+	    and hot =  #{condition.hot}
+	</if>
+	<if test="condition.mark != null and condition.mark != ''" >
+	    and mark =  #{condition.mark}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into info_class(id,createTime,deleteStatus,display,name,sequence,level,seoDescription,seoKeywords,infoTypeId,parentId,hot,mark)
+ values(#{id},now(),#{deleteStatus},#{display},#{name},#{sequence},#{level},#{seoDescription},#{seoKeywords},#{infoTypeId},#{parentId},#{hot},#{mark})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update info_class set deleteStatus=#{deleteStatus},display=#{display},name=#{name},sequence=#{sequence},level=#{level},seoDescription=#{seoDescription},seoKeywords=#{seoKeywords},infoTypeId=#{infoTypeId},parentId=#{parentId},hot=#{hot},mark=#{mark} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update info_class set 
+	<trim  suffixOverrides="," >
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="deleteStatus != null  ">
+		deleteStatus=#{deleteStatus},
+	</if>
+	<if test="display != null  ">
+		display=#{display},
+	</if>
+	<if test="name != null  ">
+		name=#{name},
+	</if>
+	<if test="sequence != null  ">
+		sequence=#{sequence},
+	</if>
+	<if test="level != null  ">
+		level=#{level},
+	</if>
+	<if test="seoDescription != null  ">
+		seoDescription=#{seoDescription},
+	</if>
+	<if test="seoKeywords != null  ">
+		seoKeywords=#{seoKeywords},
+	</if>
+	<if test="infoTypeId != null  ">
+		infoTypeId=#{infoTypeId},
+	</if>
+	<if test="parentId != null  ">
+		parentId=#{parentId},
+	</if>
+	<if test="hot != null  ">
+		hot=#{hot},
+	</if>
+	<if test="mark != null  ">
+		mark=#{mark},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from info_class where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 信息分类 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from info_class where id = #{id}
+</select>
+
+<!-- 信息分类 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from info_class 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询信息分类列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from info_class 
+	<include refid="Example_Where_Clause"/>
+	<if test="orderByClause != null and orderByClause != ''" >
+       order by  ${orderByClause}
+    </if>
+    <if test="limitClause != null and limitClause != ''" >
+       ${limitClause}
+    </if>
+</select>
+  	
+</mapper>   

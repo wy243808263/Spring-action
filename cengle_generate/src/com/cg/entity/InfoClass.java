@@ -1,0 +1,13 @@
+package com.cg.entity;
+
+import com.base.entity.BaseEntity;
+/**
+ * 
+ * <br>
+ * <b>功能：</b>InfoClassEntity<br>
+ */
+public class InfoClass extends BaseEntity {
+	
+		private java.lang.Long id;//   	private java.util.Date createTime;//   创建时间	private java.lang.Boolean deleteStatus;//   删除状态	private java.lang.Boolean display;//   显示状态	private java.lang.String name;//   名字	private java.lang.Integer sequence;//   排序	private java.lang.Integer level;//   级别	private java.lang.String seoDescription;//   Seo描述	private java.lang.String seoKeywords;//   Seo关键字	private java.lang.Long infoTypeId;//   类型ID	private java.lang.Long parentId;//   父分类ID	private java.lang.Boolean hot;//   热门分类	private java.lang.Integer mark;//   标志	public java.lang.Long getId() {	    return this.id;	}	public void setId(java.lang.Long id) {	    this.id=id;	}	public java.util.Date getCreateTime() {	    return this.createTime;	}	public void setCreateTime(java.util.Date createTime) {	    this.createTime=createTime;	}	public java.lang.Boolean getDeleteStatus() {	    return this.deleteStatus;	}	public void setDeleteStatus(java.lang.Boolean deleteStatus) {	    this.deleteStatus=deleteStatus;	}	public java.lang.Boolean getDisplay() {	    return this.display;	}	public void setDisplay(java.lang.Boolean display) {	    this.display=display;	}	public java.lang.String getName() {	    return this.name;	}	public void setName(java.lang.String name) {	    this.name=name;	}	public java.lang.Integer getSequence() {	    return this.sequence;	}	public void setSequence(java.lang.Integer sequence) {	    this.sequence=sequence;	}	public java.lang.Integer getLevel() {	    return this.level;	}	public void setLevel(java.lang.Integer level) {	    this.level=level;	}	public java.lang.String getSeoDescription() {	    return this.seoDescription;	}	public void setSeoDescription(java.lang.String seoDescription) {	    this.seoDescription=seoDescription;	}	public java.lang.String getSeoKeywords() {	    return this.seoKeywords;	}	public void setSeoKeywords(java.lang.String seoKeywords) {	    this.seoKeywords=seoKeywords;	}	public java.lang.Long getInfoTypeId() {	    return this.infoTypeId;	}	public void setInfoTypeId(java.lang.Long infoTypeId) {	    this.infoTypeId=infoTypeId;	}	public java.lang.Long getParentId() {	    return this.parentId;	}	public void setParentId(java.lang.Long parentId) {	    this.parentId=parentId;	}	public java.lang.Boolean getHot() {	    return this.hot;	}	public void setHot(java.lang.Boolean hot) {	    this.hot=hot;	}	public java.lang.Integer getMark() {	    return this.mark;	}	public void setMark(java.lang.Integer mark) {	    this.mark=mark;	}
+}
+

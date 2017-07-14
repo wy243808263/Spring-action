@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cg.dao.SysConfigDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.cg.entity.SysConfig" >
+	<result column="id" property="id"/>
+	<result column="createTime" property="createTime"/>
+	<result column="deleteStatus" property="deleteStatus"/>
+	<result column="address" property="address"/>
+	<result column="bigHeight" property="bigHeight"/>
+	<result column="bigWidth" property="bigWidth"/>
+	<result column="closeReason" property="closeReason"/>
+	<result column="copyRight" property="copyRight"/>
+	<result column="websiteDescription" property="websiteDescription"/>
+	<result column="websiteKeywords" property="websiteKeywords"/>
+	<result column="websiteName" property="websiteName"/>
+	<result column="websitePhone" property="websitePhone"/>
+	<result column="language" property="language"/>
+	<result column="ctx" property="ctx"/>
+	<result column="emailEnable" property="emailEnable"/>
+	<result column="emailHost" property="emailHost"/>
+	<result column="emailPort" property="emailPort"/>
+	<result column="emailPwd" property="emailPwd"/>
+	<result column="emailUser" property="emailUser"/>
+	<result column="emailUsername" property="emailUsername"/>
+	<result column="imageFileSize" property="imageFileSize"/>
+	<result column="imageSaveType" property="imageSaveType"/>
+	<result column="imageSuffix" property="imageSuffix"/>
+	<result column="websiteCss" property="websiteCss"/>
+	<result column="combineWebServer" property="combineWebServer"/>
+	<result column="imageWebServer" property="imageWebServer"/>
+	<result column="secondDomainOpen" property="secondDomainOpen"/>
+	<result column="creditrule" property="creditrule"/>
+	<result column="integral" property="integral"/>
+	<result column="uploadFilePath" property="uploadFilePath"/>
+	<result column="title" property="title"/>
+	<result column="hotSearch" property="hotSearch"/>
+	<result column="logoId" property="logoId"/>
+	<result column="codeStat" property="codeStat"/>
+	<result column="websiteState" property="websiteState"/>
+	<result column="visitorConsult" property="visitorConsult"/>
+	<result column="securityCodeType" property="securityCodeType"/>
+	<result column="serviceTelphoneList" property="serviceTelphoneList"/>
+	<result column="serviceQqList" property="serviceQqList"/>
+	<result column="qqLogin" property="qqLogin"/>
+	<result column="qqDomainCode" property="qqDomainCode"/>
+	<result column="qqLoginId" property="qqLoginId"/>
+	<result column="qqLoginKey" property="qqLoginKey"/>
+	<result column="smallWidth" property="smallWidth"/>
+	<result column="smallHeight" property="smallHeight"/>
+	<result column="middleWidth" property="middleWidth"/>
+	<result column="middleHeight" property="middleHeight"/>
+	<result column="infoImageId" property="infoImageId"/>
+	<result column="zoneImageId" property="zoneImageId"/>
+	<result column="memberIconId" property="memberIconId"/>
+	<result column="emailTest" property="emailTest"/>
+	<result column="smsEnbale" property="smsEnbale"/>
+	<result column="smsUsername" property="smsUsername"/>
+	<result column="smsPassword" property="smsPassword"/>
+	<result column="smsTest" property="smsTest"/>
+	<result column="domainAllowCount" property="domainAllowCount"/>
+	<result column="sysDomain" property="sysDomain"/>
+	<result column="zoneAllow" property="zoneAllow"/>
+	<result column="disclaimer" property="disclaimer"/>
+</resultMap>
+       
+<!-- sys_config table all fields -->
+<sql id="Base_Column_List" >
+	 id,createTime,deleteStatus,address,bigHeight,bigWidth,closeReason,copyRight,websiteDescription,websiteKeywords,websiteName,websitePhone,language,ctx,emailEnable,emailHost,emailPort,emailPwd,emailUser,emailUsername,imageFileSize,imageSaveType,imageSuffix,websiteCss,combineWebServer,imageWebServer,secondDomainOpen,creditrule,integral,uploadFilePath,title,hotSearch,logoId,codeStat,websiteState,visitorConsult,securityCodeType,serviceTelphoneList,serviceQqList,qqLogin,qqDomainCode,qqLoginId,qqLoginKey,smallWidth,smallHeight,middleWidth,middleHeight,infoImageId,zoneImageId,memberIconId,emailTest,smsEnbale,smsUsername,smsPassword,smsTest,domainAllowCount,sysDomain,zoneAllow,disclaimer
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="condition.id != null and condition.id != ''" >
+	    and id =  #{condition.id}
+	</if>
+	<if test="condition.createTime != null and condition.createTime != ''" >
+	    and createTime =  #{condition.createTime}
+	</if>
+	<if test="condition.deleteStatus != null and condition.deleteStatus != ''" >
+	    and deleteStatus =  #{condition.deleteStatus}
+	</if>
+	<if test="condition.address != null and condition.address != ''" >
+	    and address =  #{condition.address}
+	</if>
+	<if test="condition.bigHeight != null and condition.bigHeight != ''" >
+	    and bigHeight =  #{condition.bigHeight}
+	</if>
+	<if test="condition.bigWidth != null and condition.bigWidth != ''" >
+	    and bigWidth =  #{condition.bigWidth}
+	</if>
+	<if test="condition.closeReason != null and condition.closeReason != ''" >
+	    and closeReason =  #{condition.closeReason}
+	</if>
+	<if test="condition.copyRight != null and condition.copyRight != ''" >
+	    and copyRight =  #{condition.copyRight}
+	</if>
+	<if test="condition.websiteDescription != null and condition.websiteDescription != ''" >
+	    and websiteDescription =  #{condition.websiteDescription}
+	</if>
+	<if test="condition.websiteKeywords != null and condition.websiteKeywords != ''" >
+	    and websiteKeywords =  #{condition.websiteKeywords}
+	</if>
+	<if test="condition.websiteName != null and condition.websiteName != ''" >
+	    and websiteName =  #{condition.websiteName}
+	</if>
+	<if test="condition.websitePhone != null and condition.websitePhone != ''" >
+	    and websitePhone =  #{condition.websitePhone}
+	</if>
+	<if test="condition.language != null and condition.language != ''" >
+	    and language =  #{condition.language}
+	</if>
+	<if test="condition.ctx != null and condition.ctx != ''" >
+	    and ctx =  #{condition.ctx}
+	</if>
+	<if test="condition.emailEnable != null and condition.emailEnable != ''" >
+	    and emailEnable =  #{condition.emailEnable}
+	</if>
+	<if test="condition.emailHost != null and condition.emailHost != ''" >
+	    and emailHost =  #{condition.emailHost}
+	</if>
+	<if test="condition.emailPort != null and condition.emailPort != ''" >
+	    and emailPort =  #{condition.emailPort}
+	</if>
+	<if test="condition.emailPwd != null and condition.emailPwd != ''" >
+	    and emailPwd =  #{condition.emailPwd}
+	</if>
+	<if test="condition.emailUser != null and condition.emailUser != ''" >
+	    and emailUser =  #{condition.emailUser}
+	</if>
+	<if test="condition.emailUsername != null and condition.emailUsername != ''" >
+	    and emailUsername =  #{condition.emailUsername}
+	</if>
+	<if test="condition.imageFileSize != null and condition.imageFileSize != ''" >
+	    and imageFileSize =  #{condition.imageFileSize}
+	</if>
+	<if test="condition.imageSaveType != null and condition.imageSaveType != ''" >
+	    and imageSaveType =  #{condition.imageSaveType}
+	</if>
+	<if test="condition.imageSuffix != null and condition.imageSuffix != ''" >
+	    and imageSuffix =  #{condition.imageSuffix}
+	</if>
+	<if test="condition.websiteCss != null and condition.websiteCss != ''" >
+	    and websiteCss =  #{condition.websiteCss}
+	</if>
+	<if test="condition.combineWebServer != null and condition.combineWebServer != ''" >
+	    and combineWebServer =  #{condition.combineWebServer}
+	</if>
+	<if test="condition.imageWebServer != null and condition.imageWebServer != ''" >
+	    and imageWebServer =  #{condition.imageWebServer}
+	</if>
+	<if test="condition.secondDomainOpen != null and condition.secondDomainOpen != ''" >
+	    and secondDomainOpen =  #{condition.secondDomainOpen}
+	</if>
+	<if test="condition.creditrule != null and condition.creditrule != ''" >
+	    and creditrule =  #{condition.creditrule}
+	</if>
+	<if test="condition.integral != null and condition.integral != ''" >
+	    and integral =  #{condition.integral}
+	</if>
+	<if test="condition.uploadFilePath != null and condition.uploadFilePath != ''" >
+	    and uploadFilePath =  #{condition.uploadFilePath}
+	</if>
+	<if test="condition.title != null and condition.title != ''" >
+	    and title =  #{condition.title}
+	</if>
+	<if test="condition.hotSearch != null and condition.hotSearch != ''" >
+	    and hotSearch =  #{condition.hotSearch}
+	</if>
+	<if test="condition.logoId != null and condition.logoId != ''" >
+	    and logoId =  #{condition.logoId}
+	</if>
+	<if test="condition.codeStat != null and condition.codeStat != ''" >
+	    and codeStat =  #{condition.codeStat}
+	</if>
+	<if test="condition.websiteState != null and condition.websiteState != ''" >
+	    and websiteState =  #{condition.websiteState}
+	</if>
+	<if test="condition.visitorConsult != null and condition.visitorConsult != ''" >
+	    and visitorConsult =  #{condition.visitorConsult}
+	</if>
+	<if test="condition.securityCodeType != null and condition.securityCodeType != ''" >
+	    and securityCodeType =  #{condition.securityCodeType}
+	</if>
+	<if test="condition.serviceTelphoneList != null and condition.serviceTelphoneList != ''" >
+	    and serviceTelphoneList =  #{condition.serviceTelphoneList}
+	</if>
+	<if test="condition.serviceQqList != null and condition.serviceQqList != ''" >
+	    and serviceQqList =  #{condition.serviceQqList}
+	</if>
+	<if test="condition.qqLogin != null and condition.qqLogin != ''" >
+	    and qqLogin =  #{condition.qqLogin}
+	</if>
+	<if test="condition.qqDomainCode != null and condition.qqDomainCode != ''" >
+	    and qqDomainCode =  #{condition.qqDomainCode}
+	</if>
+	<if test="condition.qqLoginId != null and condition.qqLoginId != ''" >
+	    and qqLoginId =  #{condition.qqLoginId}
+	</if>
+	<if test="condition.qqLoginKey != null and condition.qqLoginKey != ''" >
+	    and qqLoginKey =  #{condition.qqLoginKey}
+	</if>
+	<if test="condition.smallWidth != null and condition.smallWidth != ''" >
+	    and smallWidth =  #{condition.smallWidth}
+	</if>
+	<if test="condition.smallHeight != null and condition.smallHeight != ''" >
+	    and smallHeight =  #{condition.smallHeight}
+	</if>
+	<if test="condition.middleWidth != null and condition.middleWidth != ''" >
+	    and middleWidth =  #{condition.middleWidth}
+	</if>
+	<if test="condition.middleHeight != null and condition.middleHeight != ''" >
+	    and middleHeight =  #{condition.middleHeight}
+	</if>
+	<if test="condition.infoImageId != null and condition.infoImageId != ''" >
+	    and infoImageId =  #{condition.infoImageId}
+	</if>
+	<if test="condition.zoneImageId != null and condition.zoneImageId != ''" >
+	    and zoneImageId =  #{condition.zoneImageId}
+	</if>
+	<if test="condition.memberIconId != null and condition.memberIconId != ''" >
+	    and memberIconId =  #{condition.memberIconId}
+	</if>
+	<if test="condition.emailTest != null and condition.emailTest != ''" >
+	    and emailTest =  #{condition.emailTest}
+	</if>
+	<if test="condition.smsEnbale != null and condition.smsEnbale != ''" >
+	    and smsEnbale =  #{condition.smsEnbale}
+	</if>
+	<if test="condition.smsUsername != null and condition.smsUsername != ''" >
+	    and smsUsername =  #{condition.smsUsername}
+	</if>
+	<if test="condition.smsPassword != null and condition.smsPassword != ''" >
+	    and smsPassword =  #{condition.smsPassword}
+	</if>
+	<if test="condition.smsTest != null and condition.smsTest != ''" >
+	    and smsTest =  #{condition.smsTest}
+	</if>
+	<if test="condition.domainAllowCount != null and condition.domainAllowCount != ''" >
+	    and domainAllowCount =  #{condition.domainAllowCount}
+	</if>
+	<if test="condition.sysDomain != null and condition.sysDomain != ''" >
+	    and sysDomain =  #{condition.sysDomain}
+	</if>
+	<if test="condition.zoneAllow != null and condition.zoneAllow != ''" >
+	    and zoneAllow =  #{condition.zoneAllow}
+	</if>
+	<if test="condition.disclaimer != null and condition.disclaimer != ''" >
+	    and disclaimer =  #{condition.disclaimer}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sys_config(id,createTime,deleteStatus,address,bigHeight,bigWidth,closeReason,copyRight,websiteDescription,websiteKeywords,websiteName,websitePhone,language,ctx,emailEnable,emailHost,emailPort,emailPwd,emailUser,emailUsername,imageFileSize,imageSaveType,imageSuffix,websiteCss,combineWebServer,imageWebServer,secondDomainOpen,creditrule,integral,uploadFilePath,title,hotSearch,logoId,codeStat,websiteState,visitorConsult,securityCodeType,serviceTelphoneList,serviceQqList,qqLogin,qqDomainCode,qqLoginId,qqLoginKey,smallWidth,smallHeight,middleWidth,middleHeight,infoImageId,zoneImageId,memberIconId,emailTest,smsEnbale,smsUsername,smsPassword,smsTest,domainAllowCount,sysDomain,zoneAllow,disclaimer)
+ values(#{id},now(),#{deleteStatus},#{address},#{bigHeight},#{bigWidth},#{closeReason},#{copyRight},#{websiteDescription},#{websiteKeywords},#{websiteName},#{websitePhone},#{language},#{ctx},#{emailEnable},#{emailHost},#{emailPort},#{emailPwd},#{emailUser},#{emailUsername},#{imageFileSize},#{imageSaveType},#{imageSuffix},#{websiteCss},#{combineWebServer},#{imageWebServer},#{secondDomainOpen},#{creditrule},#{integral},#{uploadFilePath},#{title},#{hotSearch},#{logoId},#{codeStat},#{websiteState},#{visitorConsult},#{securityCodeType},#{serviceTelphoneList},#{serviceQqList},#{qqLogin},#{qqDomainCode},#{qqLoginId},#{qqLoginKey},#{smallWidth},#{smallHeight},#{middleWidth},#{middleHeight},#{infoImageId},#{zoneImageId},#{memberIconId},#{emailTest},#{smsEnbale},#{smsUsername},#{smsPassword},#{smsTest},#{domainAllowCount},#{sysDomain},#{zoneAllow},#{disclaimer})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update sys_config set deleteStatus=#{deleteStatus},address=#{address},bigHeight=#{bigHeight},bigWidth=#{bigWidth},closeReason=#{closeReason},copyRight=#{copyRight},websiteDescription=#{websiteDescription},websiteKeywords=#{websiteKeywords},websiteName=#{websiteName},websitePhone=#{websitePhone},language=#{language},ctx=#{ctx},emailEnable=#{emailEnable},emailHost=#{emailHost},emailPort=#{emailPort},emailPwd=#{emailPwd},emailUser=#{emailUser},emailUsername=#{emailUsername},imageFileSize=#{imageFileSize},imageSaveType=#{imageSaveType},imageSuffix=#{imageSuffix},websiteCss=#{websiteCss},combineWebServer=#{combineWebServer},imageWebServer=#{imageWebServer},secondDomainOpen=#{secondDomainOpen},creditrule=#{creditrule},integral=#{integral},uploadFilePath=#{uploadFilePath},title=#{title},hotSearch=#{hotSearch},logoId=#{logoId},codeStat=#{codeStat},websiteState=#{websiteState},visitorConsult=#{visitorConsult},securityCodeType=#{securityCodeType},serviceTelphoneList=#{serviceTelphoneList},serviceQqList=#{serviceQqList},qqLogin=#{qqLogin},qqDomainCode=#{qqDomainCode},qqLoginId=#{qqLoginId},qqLoginKey=#{qqLoginKey},smallWidth=#{smallWidth},smallHeight=#{smallHeight},middleWidth=#{middleWidth},middleHeight=#{middleHeight},infoImageId=#{infoImageId},zoneImageId=#{zoneImageId},memberIconId=#{memberIconId},emailTest=#{emailTest},smsEnbale=#{smsEnbale},smsUsername=#{smsUsername},smsPassword=#{smsPassword},smsTest=#{smsTest},domainAllowCount=#{domainAllowCount},sysDomain=#{sysDomain},zoneAllow=#{zoneAllow},disclaimer=#{disclaimer} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_config set 
+	<trim  suffixOverrides="," >
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="deleteStatus != null  ">
+		deleteStatus=#{deleteStatus},
+	</if>
+	<if test="address != null  ">
+		address=#{address},
+	</if>
+	<if test="bigHeight != null  ">
+		bigHeight=#{bigHeight},
+	</if>
+	<if test="bigWidth != null  ">
+		bigWidth=#{bigWidth},
+	</if>
+	<if test="closeReason != null  ">
+		closeReason=#{closeReason},
+	</if>
+	<if test="copyRight != null  ">
+		copyRight=#{copyRight},
+	</if>
+	<if test="websiteDescription != null  ">
+		websiteDescription=#{websiteDescription},
+	</if>
+	<if test="websiteKeywords != null  ">
+		websiteKeywords=#{websiteKeywords},
+	</if>
+	<if test="websiteName != null  ">
+		websiteName=#{websiteName},
+	</if>
+	<if test="websitePhone != null  ">
+		websitePhone=#{websitePhone},
+	</if>
+	<if test="language != null  ">
+		language=#{language},
+	</if>
+	<if test="ctx != null  ">
+		ctx=#{ctx},
+	</if>
+	<if test="emailEnable != null  ">
+		emailEnable=#{emailEnable},
+	</if>
+	<if test="emailHost != null  ">
+		emailHost=#{emailHost},
+	</if>
+	<if test="emailPort != null  ">
+		emailPort=#{emailPort},
+	</if>
+	<if test="emailPwd != null  ">
+		emailPwd=#{emailPwd},
+	</if>
+	<if test="emailUser != null  ">
+		emailUser=#{emailUser},
+	</if>
+	<if test="emailUsername != null  ">
+		emailUsername=#{emailUsername},
+	</if>
+	<if test="imageFileSize != null  ">
+		imageFileSize=#{imageFileSize},
+	</if>
+	<if test="imageSaveType != null  ">
+		imageSaveType=#{imageSaveType},
+	</if>
+	<if test="imageSuffix != null  ">
+		imageSuffix=#{imageSuffix},
+	</if>
+	<if test="websiteCss != null  ">
+		websiteCss=#{websiteCss},
+	</if>
+	<if test="combineWebServer != null  ">
+		combineWebServer=#{combineWebServer},
+	</if>
+	<if test="imageWebServer != null  ">
+		imageWebServer=#{imageWebServer},
+	</if>
+	<if test="secondDomainOpen != null  ">
+		secondDomainOpen=#{secondDomainOpen},
+	</if>
+	<if test="creditrule != null  ">
+		creditrule=#{creditrule},
+	</if>
+	<if test="integral != null  ">
+		integral=#{integral},
+	</if>
+	<if test="uploadFilePath != null  ">
+		uploadFilePath=#{uploadFilePath},
+	</if>
+	<if test="title != null  ">
+		title=#{title},
+	</if>
+	<if test="hotSearch != null  ">
+		hotSearch=#{hotSearch},
+	</if>
+	<if test="logoId != null  ">
+		logoId=#{logoId},
+	</if>
+	<if test="codeStat != null  ">
+		codeStat=#{codeStat},
+	</if>
+	<if test="websiteState != null  ">
+		websiteState=#{websiteState},
+	</if>
+	<if test="visitorConsult != null  ">
+		visitorConsult=#{visitorConsult},
+	</if>
+	<if test="securityCodeType != null  ">
+		securityCodeType=#{securityCodeType},
+	</if>
+	<if test="serviceTelphoneList != null  ">
+		serviceTelphoneList=#{serviceTelphoneList},
+	</if>
+	<if test="serviceQqList != null  ">
+		serviceQqList=#{serviceQqList},
+	</if>
+	<if test="qqLogin != null  ">
+		qqLogin=#{qqLogin},
+	</if>
+	<if test="qqDomainCode != null  ">
+		qqDomainCode=#{qqDomainCode},
+	</if>
+	<if test="qqLoginId != null  ">
+		qqLoginId=#{qqLoginId},
+	</if>
+	<if test="qqLoginKey != null  ">
+		qqLoginKey=#{qqLoginKey},
+	</if>
+	<if test="smallWidth != null  ">
+		smallWidth=#{smallWidth},
+	</if>
+	<if test="smallHeight != null  ">
+		smallHeight=#{smallHeight},
+	</if>
+	<if test="middleWidth != null  ">
+		middleWidth=#{middleWidth},
+	</if>
+	<if test="middleHeight != null  ">
+		middleHeight=#{middleHeight},
+	</if>
+	<if test="infoImageId != null  ">
+		infoImageId=#{infoImageId},
+	</if>
+	<if test="zoneImageId != null  ">
+		zoneImageId=#{zoneImageId},
+	</if>
+	<if test="memberIconId != null  ">
+		memberIconId=#{memberIconId},
+	</if>
+	<if test="emailTest != null  ">
+		emailTest=#{emailTest},
+	</if>
+	<if test="smsEnbale != null  ">
+		smsEnbale=#{smsEnbale},
+	</if>
+	<if test="smsUsername != null  ">
+		smsUsername=#{smsUsername},
+	</if>
+	<if test="smsPassword != null  ">
+		smsPassword=#{smsPassword},
+	</if>
+	<if test="smsTest != null  ">
+		smsTest=#{smsTest},
+	</if>
+	<if test="domainAllowCount != null  ">
+		domainAllowCount=#{domainAllowCount},
+	</if>
+	<if test="sysDomain != null  ">
+		sysDomain=#{sysDomain},
+	</if>
+	<if test="zoneAllow != null  ">
+		zoneAllow=#{zoneAllow},
+	</if>
+	<if test="disclaimer != null  ">
+		disclaimer=#{disclaimer},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_config where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 系统配置 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_config where id = #{id}
+</select>
+
+<!-- 系统配置 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_config 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询系统配置列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_config 
+	<include refid="Example_Where_Clause"/>
+	<if test="orderByClause != null and orderByClause != ''" >
+       order by  ${orderByClause}
+    </if>
+    <if test="limitClause != null and limitClause != ''" >
+       ${limitClause}
+    </if>
+</select>
+  	
+</mapper>   

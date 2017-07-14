@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+                           http://www.springframework.org/schema/tx 
+                           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+  
+  
+<!-- 1 配置本地化代理工厂bean  这是spring整合hibenate的入口  加载hibernate.cfg.xml 创建sessionFactory对象-->
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <!-- 配置 hibernate.cfg.xml文件  classpath:表示从类路径下加载文件-->
+    <property name="configLocation">
+        <value>classpath:hibernate.cfg.xml</value>
+    </property>
+  </bean>
+  
+  <!-- 2 配置hibernage模板 -->
+  <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+    <!-- 注入sessionFactory -->
+    <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+  
+  
+  <!-- 3 配置hibernage的事务管理器 在aop术语中切面 -->
+  <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+     <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+  
+  <!-- 4 配置通知 -->
+  <tx:advice id="advice" transaction-manager="txManager">
+    <tx:attributes>
+      <tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+      <tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+      <tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+      <tx:method name="*"  read-only="true"/>
+    </tx:attributes>
+  </tx:advice>
+  
+  
+  <!--5 配置切入点  -->
+   <aop:config>
+     <!-- 配置切入点 ,这里的切入点应用的类级别-->
+     <aop:pointcut id="perform" expression="execution( *  cn.itcast.oa.service..*.*(..))"/>
+     <!-- 建立通知和切入点的结合 -->
+     <aop:advisor advice-ref="advice" pointcut-ref="perform"/>
+   </aop:config>
+  </beans>

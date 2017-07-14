@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="person" namespace="/" extends="java0909">
+		<result-types>
+			<result-type name="chart" class="cn.itcast.s2sh0808.result.JFreeChartResult"></result-type>
+		</result-types>
+		<action name="personAction_*" method="{1}" class="cn.itcast.s2sh0808.struts2.action.PersonAction">
+			<result name="index">index.jsp</result>
+			<result type="chart">chart.jsp</result>
+			<result type="java0909" name="java0909">index.jsp</result>
+		</action>
+	</package>
+</struts>	

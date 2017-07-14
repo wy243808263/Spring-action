@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cg.dao.RoleDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.cg.entity.Role" >
+	<result column="id" property="id"/>
+	<result column="enable" property="enable"/>
+	<result column="name" property="name"/>
+	<result column="roleKey" property="roleKey"/>
+	<result column="description" property="description"/>
+</resultMap>
+       
+<!-- role table all fields -->
+<sql id="Base_Column_List" >
+	 id,enable,name,roleKey,description
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="condition.id != null and condition.id != ''" >
+	    and id =  #{condition.id}
+	</if>
+	<if test="condition.enable != null and condition.enable != ''" >
+	    and enable =  #{condition.enable}
+	</if>
+	<if test="condition.name != null and condition.name != ''" >
+	    and name =  #{condition.name}
+	</if>
+	<if test="condition.roleKey != null and condition.roleKey != ''" >
+	    and roleKey =  #{condition.roleKey}
+	</if>
+	<if test="condition.description != null and condition.description != ''" >
+	    and description =  #{condition.description}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="add" parameterType="Object" >
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into role(id,enable,name,roleKey,description)
+ values(#{id},#{enable},#{name},#{roleKey},#{description})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update role set enable=#{enable},name=#{name},roleKey=#{roleKey},description=#{description} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update role set 
+	<trim  suffixOverrides="," >
+	<if test="enable != null  ">
+		enable=#{enable},
+	</if>
+	<if test="name != null  ">
+		name=#{name},
+	</if>
+	<if test="roleKey != null  ">
+		roleKey=#{roleKey},
+	</if>
+	<if test="description != null  ">
+		description=#{description},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from role where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 联系人公告 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from role where id = #{id}
+</select>
+
+<!-- 联系人公告 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from role 
+	<include refid="Example_Where_Clause"/>
+</select>
+  	
+<!-- 查询联系人公告列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from role 
+	<include refid="Example_Where_Clause"/>
+	<if test="orderByClause != null and orderByClause != ''" >
+       order by  ${orderByClause}
+    </if>
+    <if test="limitClause != null and limitClause != ''" >
+       ${limitClause}
+    </if>
+</select>
+  	
+</mapper>   
